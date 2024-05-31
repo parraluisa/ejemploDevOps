@@ -45,13 +45,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: java-app
-      
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_29B25BBDF6814148A9FC2F2378800A37 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_28CDBEF79B7E41A7BFC398CE04CDAF22 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_FDBB046D153D411F874760AC05ACB349 }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -60,4 +53,4 @@ jobs:
           app-name: 'luisaclase'
           slot-name: 'stage'
           package: '*.jar'
-          
+          publish-profile: ${{secrets.APPSERVICE-PROFILE}}
